@@ -8,8 +8,11 @@ pipeline{
     stages{
         // checking out the git code
         stage('Checkout'){
-            echo "***** Checking out the source code *****"
-            checkout scm
+            steps{
+                echo "***** Checking out the source code *****"
+                checkout scm
+            }
+            
         }
         // build the jar file
         stage('Build'){
