@@ -1,5 +1,5 @@
 pipeline {
-    agent any
+    agent any // Correct agent declaration at the top level
     environment {
         DOCKERHUB_REPO = 'naughtyship/simple-calculator'
         APP_VERSION = "1.0-SNAPSHOT"
