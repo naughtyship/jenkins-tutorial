@@ -1,8 +1,6 @@
 pipeline{
     agent{
-        docker{
-            image 'maven:3.8.5-openjdk-11' //Docker image for Maven Build
-        }
+        any
     }
     environment {
         DOCKERHUB_REPO = 'naughtyship/simple-calculator'
@@ -13,7 +11,7 @@ pipeline{
 
     stages{
         // checking out the git code
-        stage('Checkout'){
+        stage('Checkout'){           
             steps{
                 echo "***** Checking out the source code *****"
                 checkout scm
@@ -22,6 +20,11 @@ pipeline{
         }
         // build the jar file
         stage('Build'){
+            agent{
+                docker{
+                    image 'maven:3.8.5-openjdk-11' //Docker image for Maven Build
+                }
+            }
             steps{
                 echo "***** Building the Application *****"
                 sh 'mvn clean package'
